@@ -1,0 +1,69 @@
+{
+  "documentationUrl": "https://docs.airbyte.com/integrations/sources/databricks",
+  "connectionSpecification": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Databricks Source Spec",
+    "type": "object",
+    "required": ["workspace_url", "personal_access_token", "catalog", "schema", "table"],
+    "additionalProperties": false,
+    "properties": {
+      "workspace_url": {
+        "type": "string",
+        "title": "Workspace URL",
+        "description": "The URL of your Databricks workspace. For example: https://your-workspace.cloud.databricks.com",
+        "examples": [
+          "https://your-workspace.cloud.databricks.com",
+          "https://your-workspace.azuredatabricks.net",
+          "https://your-workspace.gcp.databricks.com"
+        ],
+        "pattern": "https://.*"
+      },
+      "personal_access_token": {
+        "type": "string",
+        "title": "Personal Access Token",
+        "description": "Your Databricks Personal Access Token (PAT). You can generate one in your Databricks workspace under User Settings > Access Tokens.",
+        "airbyte_secret": true,
+        "always_show": true
+      },
+      "catalog": {
+        "type": "string",
+        "title": "Catalog",
+        "description": "The name of the catalog containing your data.",
+        "examples": ["hive_metastore", "main", "my_catalog"]
+      },
+      "schema": {
+        "type": "string",
+        "title": "Schema",
+        "description": "The name of the schema containing your data.",
+        "examples": ["default", "my_schema", "public"]
+      },
+      "table": {
+        "type": "string",
+        "title": "Table",
+        "description": "The name of the table to sync.",
+        "examples": ["users", "orders", "events"]
+      },
+      "cursor_field": {
+        "type": "string",
+        "title": "Cursor Field",
+        "description": "The field to use for incremental sync. This field should be a timestamp or date field that indicates when the record was last updated. Leave empty for full refresh sync.",
+        "examples": ["updated_at", "modified_date", "last_modified"],
+        "default": "updated_at"
+      },
+      "warehouse_id": {
+        "type": "string",
+        "title": "Warehouse ID",
+        "description": "The ID of the SQL warehouse to use for queries. You can find this in your Databricks workspace under SQL Warehouses.",
+        "examples": ["1234567890abcdef"]
+      },
+      "batch_size": {
+        "type": "integer",
+        "title": "Batch Size",
+        "description": "The number of records to fetch in each batch. Larger batches may be faster but use more memory.",
+        "default": 10000,
+        "minimum": 1000,
+        "maximum": 100000
+      }
+    }
+  }
+}
