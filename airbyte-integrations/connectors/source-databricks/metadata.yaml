@@ -1,0 +1,40 @@
+data:
+  ab_internal:
+    ql: 400
+    sl: 300
+  allowedHosts:
+    hosts:
+      - "*.databricks.com"
+      - "*.azuredatabricks.net"
+      - "*.gcp.databricks.com"
+  connectorBuildOptions:
+    baseImage: docker.io/airbyte/python-connector-base:4.0.1@sha256:111cbcb26795adcd42b03c3f29c8b6b7adbbfcb5c5192a520d9b8d399a976b22
+  connectorSubtype: database
+  connectorType: source
+  definitionId: 12345678-1234-1234-1234-123456789012
+  dockerImageTag: 0.1.0
+  dockerRepository: airbyte/source-databricks
+  documentationUrl: https://docs.airbyte.com/integrations/sources/databricks
+  githubIssueLabel: source-databricks
+  icon: databricks.svg
+  license: MIT
+  maxSecondsBetweenMessages: 1
+  name: Databricks
+  remoteRegistries:
+    pypi:
+      enabled: true
+      packageName: airbyte-source-databricks
+  registryOverrides:
+    cloud:
+      enabled: true
+      dockerImageTag: "0.1.0"
+    oss:
+      enabled: true
+      dockerImageTag: "0.1.0"
+  releaseStage: alpha
+  supportLevel: community
+  tags:
+    - language:python
+    - cdk:python
+  connectorTestSuitesOptions:
+    - suite: unitTests
